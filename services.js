@@ -19,8 +19,10 @@ export async function getAllProducts(){
 
 export async function getProduct(idPedido){
     try{
-        if(idPedido >= 0 && idPedido <= 20){ // no quiero hardcodearlo, pero hacer un fetch sólo para chequear el length es demasiado gasto computacional
-
+        const cantTotal = await getAllProducts() //no me convence el gasto computacional que requiere hacer otra llamada, para que no me tire un out of bounds, pero tampoco quiero hardcodearlo
+        
+        if(idPedido >= 0 && idPedido <= cantTotal.length){ 
+            
             const response = await fetch(`https://fakestoreapi.com/products/${idPedido}`);
             const data = await response.json();
             
@@ -65,22 +67,24 @@ export async function postProduct(titulo, precio, categoria){
 }
 
 export async function deleteProduct(productId){
-    if(productId >= 0 && productId<= 20){
-        try{
+    try{
+        const todos = await getAllProducts() //no me encanta, pero tampoco quiero hardcodearlo. La api no tenía un /count
+        
+        if(productId >= 0 && productId <= todos.length){  
             const response = await fetch(`https://fakestoreapi.com/products/${productId}`, {method: 'DELETE'});
             const data = await response.json();
 
             let {id, title, price} = data;
 
-            console.log("producto eliminado eliminado: ")
+            console.log("producto eliminado: ")
             return {id, title, price}
-
-        } catch (error){
-            console.log("no se pudo eliminar el producto");
-            console.error(error);
+        }else{
+            return "el id del producto debe ser un número entre 0 y 20"
         }
-    } else{
-        return "el id del producto debe ser un número entre 0 y 20"
+        
+    } catch (error){
+        console.log("no se pudo eliminar el producto");
+        console.error(error);
     }
     
     
