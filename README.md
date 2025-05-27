@@ -7,7 +7,7 @@
   * Agrega la propiedad "type": "module" en el archivo package.json para habilitar ESModules.
   * Configura un script llamado start para ejecutar el programa con el comando npm run start.
 
-## Requerimiento ###2: Lógica de Gestión de Productos
+## Requerimiento 2: Lógica de Gestión de Productos
 
 Con la base del proyecto lista, ahora necesitamos implementar las funcionalidades principales usando la API FakeStore. El sistema debe ser capaz de interpretar comandos ingresados en la terminal y ejecutar las siguientes acciones:
 
