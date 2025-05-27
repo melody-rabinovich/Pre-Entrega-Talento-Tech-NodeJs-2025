@@ -3,7 +3,7 @@ import {getAllProducts, getProduct, postProduct, deleteProduct} from './services
 async function main(){
     const args =  process.argv.slice(2); // omite las rutas
     
-    if(args.length != 0){
+    if(args.length >= 0){
 
         // Ejemplo: npm run start GET products
         if(args[0] === "GET" && args[1]=="products"){

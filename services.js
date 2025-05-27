@@ -19,9 +19,8 @@ export async function getAllProducts(){
 
 export async function getProduct(idPedido){
     try{
-        if(idPedido >= 0 && idPedido <= 20){ 
-            // no quiero hardcodearlo, pero hacer un fetch sólo para chequear el length es demasiado gasto computacional
-            // hay que ver si es más optimo traerme toda la api y recorrerla hasta encontrar el id pedido
+        if(idPedido >= 0 && idPedido <= 20){ // no quiero hardcodearlo, pero hacer un fetch sólo para chequear el length es demasiado gasto computacional
+
             const response = await fetch(`https://fakestoreapi.com/products/${idPedido}`);
             const data = await response.json();
             
